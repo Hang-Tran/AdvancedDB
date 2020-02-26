@@ -2,6 +2,7 @@ package com.company.Repositories;
 
 import com.company.IdGenerator;
 import com.company.Models.Product;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class ProductRepository extends RepositoryBase<Product> {
     public ProductRepository(IdGenerator idGenerator) {
+
         super("Database/Products/", idGenerator);
     }
 
@@ -18,7 +20,7 @@ public class ProductRepository extends RepositoryBase<Product> {
         var files = dir.listFiles((dir1, name) -> name.toLowerCase().endsWith(".ser"));
 
         var result = new ArrayList<Product>();
-        for (var file: files) {
+        for (var file : files) {
             var name = file.getName();
             result.add(this.get(name.substring(0, name.length() - 4)));
         }

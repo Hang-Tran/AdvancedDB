@@ -14,7 +14,7 @@ public class Validator {
 
         var validators = field.getAnnotationsByType(RegexValidator.class);
         for(var validator: validators){
-            if(!value.matches(validator.pattern())) {
+            if(value.matches(validator.pattern())) {
                 result.add(validator.message());
             }
         }

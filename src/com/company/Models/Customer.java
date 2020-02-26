@@ -5,33 +5,44 @@ import com.company.Annotations.*;
 public class Customer implements java.io.Serializable, DbEntity {
     private String id;
 
-    @RegexValidator(pattern = "^\\D.{1,}$", message = "Your name must be at least one character!")
-    @RegexValidator(pattern = "^\\D*$", message = "Your name can not contain any numbers")
+    @RegexValidator(pattern = "^[A-Za-z].*[0-9]", message = "Your name can not contain any numbers")
+    @RegexValidator(pattern = "^[0-9].*", message = "Your name can not contain any numbers")
     private String name;
 
-    /*@RegexValidator(pattern = "[0-9]+", message = "Your adress can not only contain numbers!")
-    @RegexValidator(pattern = "\"^.{1,}$\"", message = "Your adress must be at least one character!")
-    @RegexValidator(pattern = ".*\\d.*", message = "There must be at least one number in your adress!")*/
-
-    @RegexValidator(pattern = "^\\D.*\\d", message = "Your adress must contain characters and number(s)")
+    @RegexValidator(pattern = "^[0-9].*", message = "Your adress can not contain only numbers!")
+    @RegexValidator(pattern = "^[0-9].*[A-Za-z]|^[A-Za-z]*", message = "Your adress need include both characters and number")
     private String address;
 
-    @RegexValidator(pattern = "^[a-zA-Z0-9_+&*-]+(?:\\." +
-            "[a-zA-Z0-9_+&*-]+)*@" +
-            "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
-            "A-Z]{2,7}$",
-            message = "Your email adress must contain an @ character and a ., example: hello@hi.com"
-    )
+    @RegexValidator(pattern = "^[0-9].*", message = "Your mail can not contain only numbers!")
+    @RegexValidator(pattern = "^[A-Za-z]|\\w*", message = "Please enter mail like this format example@mail.com!")
     private String mail;
 
-    @RegexValidator(pattern = "^\\d{5,}$", message = "Phone number must be at least 5 digits")
+    @RegexValidator(pattern = "^\\d{1,7}", message = "Phone number must be at least 8 digits")
+    @RegexValidator(pattern = "^\\D.*", message = "Phone number can not contain any characters")
     private String tel;
+
 
     public Customer(String name, String address, String mail, String tel) {
         this.name = name;
         this.address = address;
         this.mail = mail;
         this.tel = tel;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAddress() {
@@ -58,19 +69,4 @@ public class Customer implements java.io.Serializable, DbEntity {
         this.tel = tel;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 }

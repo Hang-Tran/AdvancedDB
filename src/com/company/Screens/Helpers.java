@@ -1,4 +1,4 @@
-package com.company.Forms;
+package com.company.Screens;
 
 import com.company.Validator;
 
